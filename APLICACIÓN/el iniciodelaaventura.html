@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuento con Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .scene {
+            display: none;
+        }
+        .scene img {
+            max-width: 100%;
+            height: auto;
+        }
+        .scene.active {
+            display: block;
+        }
+        .button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="scene1" class="scene active">
+        <h1>El Inicio de la Aventura</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Escena 1">
+        <p>Había una vez, en un reino lejano, un valiente caballero.</p>
+    </div>
+    <div id="scene2" class="scene">
+        <h1>El Encuentro con el Dragón</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Escena 2">
+        <p>El caballero se encontró con un dragón feroz en su camino.</p>
+    </div>
+    <div id="scene3" class="scene">
+        <h1>La Batalla</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Escena 3">
+        <p>El caballero luchó valientemente contra el dragón.</p>
+    </div>
+    <div id="scene4" class="scene">
+        <h1>El Triunfo</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Escena 4">
+        <p>Finalmente, el caballero derrotó al dragón y salvó el reino.</p>
+    </div>
+    <button class="button" onclick="nextScene()">Siguiente</button>
+
+    <script src="eliniciodelaaventura.js"></script>
+</body>
+</html>

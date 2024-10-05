@@ -1,0 +1,26 @@
+#game-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+#images img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+#sounds button {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}

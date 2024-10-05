@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Relacionar Columnas</title>
+    <link rel="stylesheet" href="relacionarc.css">
+</head>
+<body>
+    <div class="container">
+        <div class="column words">
+            <div class="word" data-sound="sonido1.mp3" data-match="perro">Perro</div>
+            <div class="word" data-sound="sonido2.mp3" data-match="gato">Gato</div>
+            <div class="word" data-sound="sonido3.mp3" data-match="pajaro">Pájaro</div>
+        </div>
+        <div class="column images">
+            <img src="perro.jpg" alt="Perro" class="image" data-match="perro">
+            <img src="gato.jpg" alt="Gato" class="image" data-match="gato">
+            <img src="pajaro.jpg" alt="Pájaro" class="image" data-match="pajaro">
+        </div>
+    </div>
+    <script src="relacionarc.js"></script>
+</body>
+</html>

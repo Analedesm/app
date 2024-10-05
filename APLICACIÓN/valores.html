@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuento de los Valores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .scene {
+            display: none;
+        }
+        .scene img {
+            max-width: 100%;
+            height: auto;
+        }
+        .scene.active {
+            display: block;
+        }
+        .button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="scene1" class="scene active">
+        <h1>La Amistad</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Amistad">
+        <p>En un pequeño pueblo, dos amigos inseparables siempre se ayudaban mutuamente.</p>
+    </div>
+    <div id="scene2" class="scene">
+        <h1>El Respeto</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Respeto">
+        <p>En la escuela, todos los niños aprendieron a respetar las diferencias de los demás.</p>
+    </div>
+    <div id="scene3" class="scene">
+        <h1>La Honestidad</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Honestidad">
+        <p>Un día, un niño encontró una cartera y la devolvió a su dueño, mostrando gran honestidad.</p>
+    </div>
+    <div id="scene4" class="scene">
+        <h1>La Generosidad</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Generosidad">
+        <p>En el vecindario, una niña compartía sus juguetes con todos los niños, demostrando generosidad.</p>
+    </div>
+    <button class="button" onclick="nextScene()">Siguiente</button>
+
+    <script src="valores.js"></script>
+</body>
+</html>

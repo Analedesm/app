@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuento de las Vocales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .scene {
+            display: none;
+        }
+        .scene img {
+            max-width: 100%;
+            height: auto;
+        }
+        .scene.active {
+            display: block;
+        }
+        .button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="scene1" class="scene active">
+        <h1>La Aventura de la A</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Vocal A">
+        <p>La vocal A vivía en una manzana roja y le encantaba ayudar a las abejas.</p>
+    </div>
+    <div id="scene2" class="scene">
+        <h1>El Encuentro de la E</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Vocal E">
+        <p>La vocal E vivía en una esmeralda verde y siempre estaba explorando el bosque.</p>
+    </div>
+    <div id="scene3" class="scene">
+        <h1>La Isla de la I</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Vocal I">
+        <p>La vocal I vivía en una isla soleada y jugaba con iguanas.</p>
+    </div>
+    <div id="scene4" class="scene">
+        <h1>El Océano de la O</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Vocal O">
+        <p>La vocal O vivía en el océano azul y nadaba con los delfines.</p>
+    </div>
+    <div id="scene5" class="scene">
+        <h1>El Universo de la U</h1>
+        <img src="https://via.placeholder.com/600x400" alt="Vocal U">
+        <p>La vocal U vivía en el universo morado y viajaba entre las estrellas.</p>
+    </div>
+    <button class="button" onclick="nextScene()">Siguiente</button>
+
+    <script src="vocales.js"></script>
+</body>
+</html>

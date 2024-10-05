@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Relacionar Columnas</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+        }
+        .item {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        .matched {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column" id="words">
+            <!-- Palabras -->
+        </div>
+        <div class="column" id="images">
+            <!-- Imágenes -->
+        </div>
+    </div>
+    <script src="relacion.js"></script>
+</body>
+</html>

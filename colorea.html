@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad de Vocales</title>
+    <style>
+        #canvas {
+            border: 1px solid black;
+        }
+        .color-button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Colorea y Traza la Vocal "a"</h1>
+    <canvas id="canvas" width="600" height="400"></canvas>
+    <div>
+        <button class="color-button" style="background-color: red;" onclick="setColor('red')">Rojo</button>
+        <button class="color-button" style="background-color: blue;" onclick="setColor('blue')">Azul</button>
+    </div>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let currentColor = 'red';
+
+        // Dibujar la letra "a" con líneas punteadas
+        ctx.font = '100px Arial';
+        ctx.strokeStyle = 'black';
+        ctx.setLineDash([5, 15]);
+        ctx.strokeText('a', 100, 200);
+
+        // Dibujar círculos con letras dentro
+        const letters = ['a', 'b', 'c', 'd', 'e'];
+        letters.forEach((letter, index) => {
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.arc(100 + index * 100, 300, 30, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.fillText(letter, 90 + index * 100, 310);
+        });
+
+        // Función para cambiar el color actual
+        function setColor(color) {
+            currentColor = color;
+        }
+
+        // Función para colorear la letra "a"
+        canvas.addEventListener('click', function(event) {
+            const x = event.offsetX;
+            const y = event.offsetY;
+
+            // Verificar si se hizo clic dentro de la letra "a"
+            if (ctx.isPointInPath(x, y)) {
+                ctx.fillStyle = currentColor;
+                ctx.fillText('a', 100, 200);
+            }
+        });
+
+        // Función para trazar la letra "a"
+        canvas.addEventListener('mousedown', function(event) {
+            ctx.beginPath();
+            ctx.moveTo(event.offsetX, event.offsetY);
+
+            canvas.addEventListener('mousemove', onPaint);
+        });
+
+        canvas.addEventListener('mouseup', function() {
+            canvas.removeEventListener('mousemove', onPaint);
+        });
+
+        function onPaint(event) {
+            ctx.lineTo(event.offsetX, event.offsetY);
+            ctx.strokeStyle = currentColor;
+            ctx.stroke();
+        }
+    </script>
+</body>
+</html>

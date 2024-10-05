@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Contar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .item {
+            margin: 10px;
+        }
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Contar</h1>
+    <p>Cuenta el número de objetos y selecciona la respuesta correcta</p>
+    <div class="container" id="container"></div>
+    <div>
+        <button onclick="checkAnswer(1)">1</button>
+        <button onclick="checkAnswer(2)">2</button>
+        <button onclick="checkAnswer(3)">3</button>
+        <button onclick="checkAnswer(4)">4</button>
+        <button onclick="checkAnswer(5)">5</button>
+    </div>
+    <div class="result" id="result"></div>
+
+    <script>
+        let correctAnswer;
+
+        function generateQuestion() {
+            const container = document.getElementById('container');
+            container.innerHTML = '';
+            const itemCount = Math.floor(Math.random() * 5) + 1;
+            correctAnswer = itemCount;
+
+            for (let i = 0; i < itemCount; i++) {
+                const item = document.createElement('img');
+                item.src = 'https://via.placeholder.com/50'; // Puedes cambiar esta URL por imágenes más atractivas
+                item.alt = 'Objeto';
+                item.className = 'item';
+                container.appendChild(item);
+            }
+
+            document.getElementById('result').innerText = '';
+        }
+
+        function checkAnswer(answer) {
+            if (answer === correctAnswer) {
+                document.getElementById('result').innerText = '¡Correcto!';
+            } else {
+                document.getElementById('result').innerText = `Incorrecto. La respuesta correcta es ${correctAnswer}.`;
+            }
+            generateQuestion();
+        }
+
+        // Generar la primera pregunta al cargar la página
+        window.onload = generateQuestion;
+    </script>
+</body>
+</html>

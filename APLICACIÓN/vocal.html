@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Vocales</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .vowel, .image {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 2px solid #000;
+            text-align: center;
+            line-height: 100px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .vowel {
+            background-color: #f0f0f0;
+        }
+        .image {
+            background-color: #fff;
+        }
+        .correct {
+            border-color: green;
+        }
+        .incorrect {
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Vocales</h1>
+    <div class="container" id="imageContainer">
+        <div class="image" id="img1" data-vowel="a">🐝</div>
+        <div class="image" id="img2" data-vowel="i">🏠</div>
+        <div class="image" id="img3" data-vowel="e">🐘</div>
+        <div class="image" id="img4" data-vowel="a">✈️</div>
+        <div class="image" id="img5" data-vowel="o">👂</div>
+        <div class="image" id="img6" data-vowel="u">🍇</div>
+    </div>
+    <div class="container" id="optionsContainer">
+        <div class="vowel" draggable="true" id="a1">A</div>
+        <div class="vowel" draggable="true" id="e1">E</div>
+        <div class="vowel" draggable="true" id="i1">I</div>
+        <div class="vowel" draggable="true" id="a2">A</div>
+        <div class="vowel" draggable="true" id="o1">O</div>
+        <div class="vowel" draggable="true" id="u1">U</div>
+        <div class="vowel" draggable="true" id="e2">E</div>
+        <div class="vowel" draggable="true" id="i2">I</div>
+        <div class="vowel" draggable="true" id="u2">U</div>
+    </div>
+    <script>
+        document.getElementById('optionsContainer').addEventListener('dragstart', dragStart);
+        document.getElementById('imageContainer').addEventListener('dragover', dragOver);
+        document.getElementById('imageContainer').addEventListener('drop', drop);
+
+        function dragStart(e) {
+            e.dataTransfer.setData('text', e.target.id);
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+        }
+
+        function drop(e) {
+            e.preventDefault();
+            const vowelId = e.dataTransfer.getData('text');
+            const vowel = document.getElementById(vowelId);
+            const correctVowel = e.target.getAttribute('data-vowel');
+
+            if (vowel.textContent.toLowerCase() === correctVowel) {
+                e.target.classList.add('correct');
+                e.target.textContent = vowel.textContent;
+            } else {
+                e.target.classList.add('incorrect');
+            }
+        }
+    </script>
+</body>
+</html>

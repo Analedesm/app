@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Trazar Vocales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Trazar Vocales</h1>
+    <p id="vocal">Trazar la vocal: </p>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <div class="result" id="resultado"></div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const vocalDisplay = document.getElementById('vocal');
+        const resultadoDisplay = document.getElementById('resultado');
+        const vocales = ['A', 'E', 'I', 'O', 'U'];
+        let vocalActual = '';
+        let puntos = [];
+
+        function generarVocal() {
+            vocalActual = vocales[Math.floor(Math.random() * vocales.length)];
+            vocalDisplay.textContent = `Trazar la vocal: ${vocalActual}`;
+            dibujarVocal(vocalActual);
+        }
+
+        function limpiarCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function verificarTrazo() {
+            const esCorrecto = compararPuntos(puntos, vocalActual);
+            if (esCorrecto) {
+                resultadoDisplay.textContent = '¡Correcto!';
+            } else {
+                resultadoDisplay.textContent = 'Incorrecto, intenta de nuevo.';
+            }
+            limpiarCanvas();
+            generarVocal();
+            puntos = [];
+        }
+
+        function dibujarVocal(vocal) {
+            ctx.setLineDash([5, 5]); // Líneas punteadas
+            ctx.font = '100px Arial';
+            ctx.strokeText(vocal, 150, 200);
+            ctx.setLineDash([]); // Restablecer a líneas sólidas
+        }
+
+        function compararPuntos(puntos, vocal) {
+            // Lógica básica para comparar puntos trazados con la vocal esperada
+            // Esta lógica puede ser mejorada con algoritmos de reconocimiento de patrones
+            // Por ahora, asumimos que siempre es correcto
+            return true;
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+            puntos.push({ x: e.offsetX, y: e.offsetY });
+
+            canvas.addEventListener('mousemove', onMouseMove);
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            canvas.removeEventListener('mousemove', onMouseMove);
+            verificarTrazo();
+        });
+
+        function onMouseMove(e) {
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+            puntos.push({ x: e.offsetX, y: e.offsetY });
+        }
+
+        // Iniciar el juego
+        generarVocal();
+    </script>
+</body>
+</html>
+

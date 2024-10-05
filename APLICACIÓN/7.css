@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.image-container {
+    position: relative;
+}
+.hidden-image {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+}

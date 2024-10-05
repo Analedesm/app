@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Colorear</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+        .color-palette {
+            margin-top: 20px;
+        }
+        .color-palette button {
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Colorear</h1>
+    <canvas id="coloringCanvas" width="600" height="400"></canvas>
+    <div class="color-palette">
+        <button style="background-color: red;" onclick="selectColor('red')"></button>
+        <button style="background-color: green;" onclick="selectColor('green')"></button>
+        <button style="background-color: blue;" onclick="selectColor('blue')"></button>
+        <button style="background-color: yellow;" onclick="selectColor('yellow')"></button>
+        <button style="background-color: orange;" onclick="selectColor('orange')"></button>
+    </div>
+
+    <script src="colorear.js"></script>
+</body>
+</html>
+
+

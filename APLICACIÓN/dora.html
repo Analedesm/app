@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad de Emociones</title>
+    <style>
+        .character {
+            margin-bottom: 20px;
+        }
+        .emojis {
+            display: flex;
+            gap: 10px;
+        }
+        .emoji {
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reconoce las emociones</h1>
+    <div class="character">
+        <p>Dora está...</p>
+        <div class="emojis">
+            <span class="emoji" onclick="selectEmotion('Dora', 'enojada')">😠</span>
+            <span class="emoji" onclick="selectEmotion('Dora', 'triste')">😢</span>
+            <span class="emoji" onclick="selectEmotion('Dora', 'feliz')">😊</span>
+        </div>
+    </div>
+    <div class="character">
+        <p>Bob Esponja está...</p>
+        <div class="emojis">
+            <span class="emoji" onclick="selectEmotion('Bob Esponja', 'enojado')">😠</span>
+            <span class="emoji" onclick="selectEmotion('Bob Esponja', 'riendo')">😂</span>
+            <span class="emoji" onclick="selectEmotion('Bob Esponja', 'feliz')">😊</span>
+        </div>
+    </div>
+    <div class="character">
+        <p>Pocoyo está...</p>
+        <div class="emojis">
+            <span class="emoji" onclick="selectEmotion('Pocoyo', 'enojado')">😠</span>
+            <span class="emoji" onclick="selectEmotion('Pocoyo', 'triste')">😢</span>
+            <span class="emoji" onclick="selectEmotion('Pocoyo', 'riendo')">😂</span>
+        </div>
+    </div>
+
+    <script>
+        function selectEmotion(character, emotion) {
+            alert(character + ' está ' + emotion);
+        }
+    </script>
+</body>
+</html>

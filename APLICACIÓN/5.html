@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego de Imágenes</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10%;
+        }
+        .image-container {
+            position: relative;
+        }
+        .hidden-image {
+            display: none;
+            position: absolute;
+            top: 10%;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+          
+            <img src="gato.jpeg" alt="Imagen 1" class="main-image">
+            <img src="mesa.jpg" alt="Imagen Oculta 1" class="hidden-image">
+            <img src="gato.jpeg" class="main-image">
+            <img src="mesa.jpg" alt="Imagen Oculta 2" class="hidden-image">
+            <img src="image3.jpg" alt="Imagen 3" class="main-image">
+            <img src="hidden3.jpg" alt="Imagen Oculta 3" class="hidden-image">
+        </div>
+        <!-- Repite para las 9 imágenes principales -->
+
+    </div>
+
+    <audio id="sound" src="sound.mp3"></audio>
+
+    <script>
+        document.querySelectorAll('.main-image').forEach((img, index) => {
+            img.addEventListener('click', () => {
+                document.getElementById('sound').play();
+                const hiddenImg = img.nextElementSibling;
+                hiddenImg.style.display = 'block';
+                setTimeout(() => {
+                    hiddenImg.style.display = 'none';
+                }, 1000); // 3000 milisegundos = 3 segundos
+            });
+        });
+    </script>
+</body>
+</html>

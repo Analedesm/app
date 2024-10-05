@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Trazar Números</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Trazar Números</h1>
+    <p id="numero">Trazar el número: </p>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <p id="resultado"></p>
+    <button onclick="generarNumero()">Generar Nuevo Número</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const numeroDisplay = document.getElementById('numero');
+        const resultadoDisplay = document.getElementById('resultado');
+        let numeroActual = 0;
+        let puntos = [];
+        let model;
+
+        async function loadModel() {
+            model = await tf.loadLayersModel('https://storage.googleapis.com/tfjs-models/tfjs/mnist/model.json');
+            console.log('Modelo cargado');
+        }
+
+        loadModel();
+
+        function generarNumero() {
+            numeroActual = Math.floor(Math.random() * 10);
+            numeroDisplay.textContent = `Trazar el número: ${numeroActual}`;
+            dibujarNumero(numeroActual);
+            limpiarCanvas();
+        }
+
+        function limpiarCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function preprocessCanvas(image) {
+            let tensor = tf.browser.fromPixels(image)
+                .resizeNearestNeighbor([28, 28])
+                .mean(2)
+                .toFloat()
+                .expandDims(0)
+                .expandDims(-1);
+            return tensor.div(255.0);
+        }
+
+        async function verificarTrazo() {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const tensor = preprocessCanvas(imageData);
+            const prediction = await model.predict(tensor).data();
+            const predictedNumber = prediction.indexOf(Math.max(...prediction));
+
+            if (predictedNumber === numeroActual) {
+                resultadoDisplay.textContent = '¡Correcto!';
+            } else {
+                resultadoDisplay.textContent = `Incorrecto, el número trazado fue ${predictedNumber}. Intenta de nuevo.`;
+            }
+
+            limpiarCanvas();
+            generarNumero();
+            puntos = [];
+        }
+
+        function dibujarNumero(numero) {
+            ctx.setLineDash([5, 5]);
+            ctx.font = '100px Arial';
+            ctx.strokeText(numero, 150, 200);
+            ctx.setLineDash([]);
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+            puntos.push({ x: e.offsetX, y: e.offsetY });
+
+            canvas.addEventListener('mousemove', onMouseMove);
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            canvas.removeEventListener('mousemove', onMouseMove);
+            verificarTrazo();
+        });
+
+        function onMouseMove(e) {
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+            puntos.push({ x: e.offsetX, y: e.offsetY });
+        }
+
+        generarNumero();
+    </script>
+</body>
+</html>

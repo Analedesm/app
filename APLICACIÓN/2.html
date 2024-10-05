@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonido al Presionar Número</title>
+</head>
+<body>
+    <h1>Presiona un número para escuchar un sonido</h1>
+    <script>
+        // Crear contexto de audio
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Función para reproducir un sonido
+        function playSound() {
+            const oscillator = audioContext.createOscillator();
+            oscillator.type = 'sine'; // Tipo de onda
+            oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // Frecuencia en Hz (A4)
+            oscillator.connect(audioContext.destination);
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.5); // Duración del sonido (0.5 segundos)
+        }
+
+        // Evento para detectar la presión de teclas
+        document.addEventListener('keydown', (event) => {
+            if (event.key >= '0' && event.key <= '9') {
+                playSound();
+            }
+        });
+    </script>
+</body>
+</html>

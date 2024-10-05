@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    gap: 50px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.word, .image {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.word:hover, .image:hover {
+    transform: scale(1.1);
+}
+
+.correct {
+    background-color: lightgreen;
+}
+
